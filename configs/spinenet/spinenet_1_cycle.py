@@ -175,7 +175,7 @@ model = dict(
 )
 # dataset settings
 dataset_type = 'CocoDataset' # Dataset type, this will be used to define the dataset
-data_root = 'D:/2022_NIA_project/mmdetection/data/1_cycle/' # Root path of data
+data_root = 'data/1_cycle/' # Root path of data
 img_norm_cfg = dict( # Image normalization config to normalize the input images
     mean=[123.675, 116.28, 103.53], # Mean values used to pre-training the pre-trained backbone models
     std=[58.395, 57.12, 57.375], # Standard variance used to pre-training the pre-trained backbone models
@@ -294,7 +294,7 @@ runner = dict(
     max_epochs=350) # Total epochs to train the model
 dist_params = dict(backend='nccl') # Parameters to setup distributed training, the port can also be set.
 log_level = 'INFO' # The level of logging.
-work_dir = 'D:/2022_NIA_project/mmdetection/work_dirs/1_cycle/spinenet' # Save path of pth_file
+work_dir = 'work_dirs/1_cycle/spinenet' # Save path of pth_file
 load_from = None # load models as a pre-trained model from a given path. This will not resume training.
 resume_from = None # Resume checkpoints from a given path, the training will be resumed from the epoch when the checkpoint's is saved.
 workflow = [('train', 1), ('val', 1)] # https://mmdetection.readthedocs.io/en/latest/tutorials/customize_runtime.html
