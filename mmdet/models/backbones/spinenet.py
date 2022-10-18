@@ -1,11 +1,12 @@
 import torch.nn as nn
 import torch.nn.functional as F
 
-from .resnet import BasicBlock, Bottleneck, make_res_layer
-from mmdet.ops import ConvModule
+from .resnet import BasicBlock, Bottleneck
+from mmcv.cnn import ConvModule
 from mmcv.cnn import constant_init, kaiming_init
 from torch.nn.modules.batchnorm import _BatchNorm
-from ..registry import BACKBONES
+from ..builder import BACKBONES
+from ..utils import ResLayer
 
 FILTER_SIZE_MAP = {
     1: 32,
@@ -190,14 +191,14 @@ class SpineNet(nn.Module):
         self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
 
         # Build the initial level 2 blocks.
-        self.init_block1 = make_res_layer(
+        self.init_block1 = ResLayer(
             self._init_block_fn,
             64,
             int(FILTER_SIZE_MAP[2] * self._filter_size_scale),
             self._block_repeats,
             conv_cfg=self.conv_cfg,
             norm_cfg=self.norm_cfg)
-        self.init_block2 = make_res_layer(
+        self.init_block2 = ResLayer(
             self._init_block_fn,
             int(FILTER_SIZE_MAP[2] * self._filter_size_scale) * 4,
             int(FILTER_SIZE_MAP[2] * self._filter_size_scale),
@@ -226,12 +227,12 @@ class SpineNet(nn.Module):
             channels = int(FILTER_SIZE_MAP[spec.level] * self._filter_size_scale)
             in_channels = channels * 4 if spec.block_fn == Bottleneck else channels
             self.scale_permuted_blocks.append(
-                make_res_layer(spec.block_fn,
-                               in_channels,
-                               channels,
-                               self._block_repeats,
-                               conv_cfg=self.conv_cfg,
-                               norm_cfg=self.norm_cfg)
+                ResLayer(spec.block_fn,
+                        in_channels,
+                        channels,
+                        self._block_repeats,
+                        conv_cfg=self.conv_cfg,
+                        norm_cfg=self.norm_cfg)
             )
 
     def init_weights(self, pretrained=None):
