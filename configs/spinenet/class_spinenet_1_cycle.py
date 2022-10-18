@@ -19,17 +19,17 @@ classes = ('WO-01', 'WO-11', 'WO-17', 'WO-23', 'SO-02',
 'C-02', 'C-04', 'WO-07', 'SO-23')
 data = dict(
     train=dict(
-        img_prefix='D:/2022_NIA_project/mmdetection/data/1_cycle/training/',
+        img_prefix='/data/1_cycle/training/',
         classes=classes,
-        ann_file='D:/2022_NIA_project/mmdetection/data/1_cycle/annotations/ContilTrain.json'),
+        ann_file='/data/1_cycle/annotations/ContilTrain.json'),
     val=dict(
-        img_prefix='D:/2022_NIA_project/mmdetection/data/1_cycle/validation/',
+        img_prefix='/data/1_cycle/validation/',
         classes=classes,
-        ann_file='D:/2022_NIA_project/mmdetection/data/1_cycle/annotations/ContilValidation.json'),
+        ann_file='/data/1_cycle/annotations/ContilValidation.json'),
     test=dict(
-        img_prefix='D:/2022_NIA_project/mmdetection/data/1_cycle/test/',
+        img_prefix='/data/1_cycle/test/',
         classes=classes,
-        ann_file='D:/2022_NIA_project/mmdetection/data/1_cycle/annotations/ContilTest.json'))
+        ann_file='/data/1_cycle/annotations/ContilTest.json'))
    
     
 
