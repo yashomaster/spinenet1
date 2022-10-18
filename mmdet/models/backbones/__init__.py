@@ -14,6 +14,7 @@ from .resnest import ResNeSt
 from .resnet import ResNet, ResNetV1d
 from .resnext import ResNeXt
 from .ssd_vgg import SSDVGG
+from .spinenet import SpineNet
 from .swin import SwinTransformer
 from .trident_resnet import TridentResNet
 
