@@ -7,7 +7,7 @@ cudnn_benchmark = True # Accelerate training when input size is fixed
 # Refer to https://github.com/open-mmlab/mmdetection/issues/725
 
 # model settings
-norm_cfg = dict(type='SyncBN', momentum=0.01, eps=1e-3, requires_grad=True) # https://github.com/yan-roo/SpineNet-Pytorch/blob/master/configs/spinenet/mask_rcnn_spinenet_49_B_8gpu_640.py
+norm_cfg = dict(type='BN', momentum=0.01, eps=1e-3, requires_grad=True) # https://github.com/yan-roo/SpineNet-Pytorch/blob/master/configs/spinenet/mask_rcnn_spinenet_49_B_8gpu_640.py
 
 
 model = dict(
